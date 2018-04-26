@@ -8,4 +8,6 @@ public interface IMovieService {
 	String createMovie(String JSONMovie);
 	
 	String deleteMovie(Long id);
+	
+	String updateMovie(String JSONMovie);
 }
