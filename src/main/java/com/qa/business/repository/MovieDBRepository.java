@@ -18,16 +18,36 @@ public class MovieDBRepository implements IMovieRepository{
 	private static final Logger logger = Logger.getLogger(MovieDBRepository.class);
 		
 	@PersistenceContext(unitName = "primary")
-	private EntityManager manger;
+	private EntityManager manager;
 
 	@Inject
 	private JSONUtil util;
 
 	@Override
 	public String listAllMovies() {
-		Query query = manger.createQuery("SELECT m FROM Movie m");
+		Query query = manager.createQuery("SELECT m FROM Movie m");
 		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
 		return util.getJSONForObject(movies);
+	}
+
+	
+	
+
+	@Override
+	public String getAMovie(Long id) {
+		Movie aMovie = findMovie(id);
+		if(aMovie != null) {
+			return util.getJSONForObject(aMovie);
+			
+		} else {
+			return "{\"message\":\"movie not found\"}";
+		}
+		
+	}
+
+
+	private Movie findMovie(Long id) {
+		return manager.find(Movie.class, id);
 	}
 
 }
