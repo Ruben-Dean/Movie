@@ -3,6 +3,7 @@ package com.qa.interoperability;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -30,12 +31,14 @@ public class MovieEndpoint {
 	}
 	
 	
-	@GET
-	@Path("json/{id}")
+	@POST
+	@Path("json")
 	@Produces({"application/json"})
 	public String createMovie( String jsonString) {
 		return service.createMovie(jsonString);
 	}
+	
+	
 }
 
 
