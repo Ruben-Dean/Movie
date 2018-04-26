@@ -50,4 +50,14 @@ public class MovieDBRepository implements IMovieRepository{
 		return manager.find(Movie.class, id);
 	}
 
+
+
+
+	@Override
+	public String createMovie(String movieJSON) {
+		Movie aMovie = util.getObjectForJSON(movieJSON, Movie.class);
+		manager.persist(aMovie);
+		return "{\"message\":\"movie created\"}";
+	}
+
 }

@@ -28,6 +28,15 @@ public class MovieEndpoint {
 	public String getAMovie(@PathParam("id") Long id) {
 		return service.getAMovie(id);
 	}
+	
+	
+	@GET
+	@Path("json/{id}")
+	@Produces({"application/json"})
+	public String createMovie( String jsonString) {
+		return service.createMovie(jsonString);
+	}
 }
+
 
 
